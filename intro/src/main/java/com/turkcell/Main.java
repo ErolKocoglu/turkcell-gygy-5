@@ -111,6 +111,12 @@ public class Main
         for(String z: students) {
             System.out.println(z);
         }
+        // iterasyon => koşul
+        int whileDongusu = 0;
+        while(whileDongusu < 5) {
+            System.out.println("Sonsuz döngü");
+            whileDongusu++;
+        }
     }
 
     
