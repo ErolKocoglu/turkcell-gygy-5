@@ -20,6 +20,12 @@ public class Main
         System.out.println(X);
         X=20;
         System.out.println(X);
+
+        // Değişken tipleri => int, double, boolean, char, String
+        String name = "Halit";
+        String age = "25";
+        boolean isStudent = true;
+        char grade = 'A';
     }
     
 } // Main classının kapsama alanı (sınır)
