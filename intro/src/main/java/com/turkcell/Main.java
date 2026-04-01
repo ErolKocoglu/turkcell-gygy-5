@@ -1,5 +1,7 @@
 package com.turkcell;
 
+import java.util.Arrays;
+
 // Entrypoint
 public class Main 
 {
@@ -26,6 +28,60 @@ public class Main
         String age = "25";
         boolean isStudent = true;
         char grade = 'A';
+
+        // Diziler (Arrays)
+
+        String[] names = { "Halit", "Ayşe", "Mehmet" };
+        System.out.println(names[0]); // index, 0 dan başlar.
+        //System.out.println(names[5]);
+
+        // Primitive (ilkel) tipler -> int, double,boolean,char
+        int a = 0;
+        int b = a;
+        a = 10;
+        System.out.println(a); 
+        System.out.println(b); 
+
+        // Referans tipler -> String, Array, Object
+        int[] c = {0,1,2,3};
+        int[] d = c;
+        d[3] = 30;
+        System.out.println(c[3]); 
+        System.out.println(d[3]); 
+
+
+        System.out.println("******");
+
+        System.out.println(a==b);
+        System.out.println(c==d);
+
+
+        int[] x = {0,1,2,3};
+        int[] y = {0,1,2,3};
+        System.out.println(y);
+        System.out.println(x==y); 
+        System.out.println(Arrays.equals(x, y));
+
+
+        String s1 = "Merhaba";
+        String s2 = "Merhaba";
+        System.out.println(s1==s2); // String Pool 
+        // (Aynı metinlerin bir havuzda toplanıp performans için birebir olanları aynı referansa ata.)
+
+        // Yine de daha güvenli bir karşılaştırma için equals() kullanılır.
+        System.out.println(s1.equals(s2));
+
+        String s3 = "Turkcell";
+        String s4 = s3.intern(); 
+        // intern() metodu, s3'ün değerini String Pool'a ekler ve oradaki referansı döndürür.
+
+        System.out.println(s3==s4);
+
+        String str3 = "Turkcell";
+        String str4 = new String("Turkcell"); // instance oluşturur, farklı referans
+
+        System.out.println(str3==str4); // false, farklı referanslar
     }
+
     
 } // Main classının kapsama alanı (sınır)
