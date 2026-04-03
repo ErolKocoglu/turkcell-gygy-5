@@ -231,3 +231,7 @@ public class Main
         return total;
     }
 } 
+// CTRL + SHIFT + P
+// User Settings
+// Compact
+// Explorer: Compact Folders kapat
