@@ -170,40 +170,46 @@ public class Main
         /// 
         /// 
         /// ....... öğrenci notu hesaplama
-        calculateGrade(85);
-        calculateGrade(70, "Ayşe");
-        calculateGrade(60);
-        calculateGrade(50, "Nurgül");
-        calculateGrade(30, "Tamer");
+        String result1 = calculateGrade(85); // konsola yaz
+        String result2 = calculateGrade(70, "Ayşe"); // db'e yaz
+        String result3 = calculateGrade(60); // email at..
+        String result4 = calculateGrade(50, "Nurgül");
+        String result5 = calculateGrade(30, "Tamer");
+
+        System.out.println(result1);
+
+        // result2 db'e yaz
+        // result3 mail at..
     }
     // Methodlar => belirli bir işi yapan kod bloklarıdır. Tekrar tekrar kullanılabilirler.
     // erişim-belirteci - static veya boş - dönüş tipi (void => boş) - method ismi - (parametreler) - {}
     // bir parametre tanımlıysa, null bile olsa göndermek zorundasın.
-    public static void calculateGrade(int grade, String name) // required parameter
+    public static String calculateGrade(int grade, String name) // required parameter
     {
         if(grade >= 85)
         {
-            System.out.println(name + " Notunuz: A");
+            String result = name + " Notunuz: A";
+            return result;
         }
         else if(grade >= 70)
         {
-            System.out.println(name + " Notunuz: B");
+            return name + " Notunuz: B";
         }
         else if(grade >= 50)
         {
-            System.out.println(name + " Notunuz: C");
+            return name + " Notunuz: C";
         }
         else
         {
-            System.out.println(name + " Notunuz: F");
+            return name + " Notunuz: F";
         }
     }
 
     // Name gönderilmezse, "Öğrenci" olarak varsayılan değer alsın.
     // Method Overloading => Aynı isimde, farklı parametre sayısına sahip methodlar oluşturma.
-    public static void calculateGrade(int grade)
+    public static String calculateGrade(int grade)
     {
-        calculateGrade(grade, "Öğrenci");
+        return calculateGrade(grade, "Öğrenci");
     }
   
 } 
