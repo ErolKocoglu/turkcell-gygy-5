@@ -10,7 +10,8 @@ public class Car extends Vehicle
     // Yazarsam => Auto oluşanı override etmiş olursun.
 
     public Car(boolean hasSunroof, String brand) {
-        this.hasSunroof = hasSunroof;
+        super(); // Vehicle'ın constructor'ını çağırır.
+        this.setHasSunroof(hasSunroof);
         super.setBrand(brand); // -> Super => Vehicle classını (kalıtım aldığım class)
     }
     public Car() {
@@ -27,4 +28,10 @@ public class Car extends Vehicle
         this.specs = specs.clone();
     }
     // Değerlerini al, referansı alma.
+    public boolean isHasSunroof() {
+        return hasSunroof;
+    }
+    public void setHasSunroof(boolean hasSunroof) {
+        this.hasSunroof = hasSunroof;
+    }
 }
