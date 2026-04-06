@@ -1,29 +1,32 @@
 package com.turkcell;
 
+// Car isminde bir type oluşturmak.
 public class Car 
 {
-    public int year;
-    public String model;
-    protected String brand;
-    // erişim belirteci: o alana kimlerin erişebileceğini belirleyen sistem
-    private double price; 
-    // public => her yerden erişilebilir
-    // private => sadece tanımlanan sınıf içerisinden erişilebilir.
-    // protected => sadece tanımlanan sınıf ve o sınıftan (türetilen) sınıflardan erişilebilir.
-    // protected => aynı paketteki sınıflardan erişilebilir.
+    // GERÇEK HAYATTAKİ HER ŞEYİ DEĞİL, 
+    // PROGRAMDA İHTİYACIMIZ OLAN ŞEYLERİ MODELLEMEK İSTİYORUZ.
 
-    // Encapsulation
-    //
-    public double getPrice(){
-        // get işlemlerini kontrol eden mekanizma
-        return price;
-    }
-    public void setPrice(double price) {
-        // classın kendisi = price
-        if(price < 0){
-            System.out.println("Fiyat negatif olamaz!");
-            return;
+    public String brand;
+    public String model;
+    public int year;
+    // public -> Her noktadan erişilebilir alan.
+
+
+    // ENCAPSULATION (KAPSÜLLEME)
+    private Double pricePerDay;
+
+    // setter method
+    public void setPricePerDay(Double pricePerDay) {
+        // this => sınıfın kendisi
+        if(pricePerDay < 0)
+        {
+            System.out.println("Fiyat negatif olamaz. 0'a eşitleniyor..");
+            pricePerDay = 0.0;
         }
-        this.price = price;
+        this.pricePerDay = pricePerDay;
+    }
+    // getter method
+    public Double getPricePerDay() {
+        return this.pricePerDay;
     }
 }
