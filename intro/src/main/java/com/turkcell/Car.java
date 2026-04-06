@@ -13,6 +13,7 @@ public class Car
 
 
     // ENCAPSULATION (KAPSÜLLEME)
+    // read-only write-only
     private Double pricePerDay;
 
     // setter method
