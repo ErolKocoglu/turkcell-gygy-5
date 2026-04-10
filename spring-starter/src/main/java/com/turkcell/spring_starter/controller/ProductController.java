@@ -3,7 +3,6 @@ package com.turkcell.spring_starter.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.random.RandomGenerator;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,6 +48,8 @@ public class ProductController {
 
         // Sen dışardan ProductForCreateDto alıyosun 
         // ama veritabanı Product ile çalışıyor
+        if(productDto.getPrice() < 0)
+            throw new RuntimeException("Para 0'dan küçük olamaz.");
 
         // Transfer => MANUAL MAPPING
         Product product = new Product();
@@ -65,6 +66,10 @@ public class ProductController {
         response.setPrice(product.getPrice());
 
         return response;
+
+        // Ben controller olarak iş kodu çalıştıramam, ama bunu yapmam gerekli..
+        // İş kodunu çalıştıracak olan yapıya BAĞIMLIYIM.
+        // Bağımlılık Enjeksiyonu -> Dependency Injection
     }
     @PutMapping
     public void updateProduct(@RequestBody Product product) {
