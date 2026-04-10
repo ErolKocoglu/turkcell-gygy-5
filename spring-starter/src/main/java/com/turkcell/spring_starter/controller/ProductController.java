@@ -9,18 +9,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.turkcell.spring_starter.model.Product;
 
-@RestController
-@RequestMapping("/api/product")
+@RestController 
+@RequestMapping("/api/product") // localhost:8080/api/product -> ProductController
+// Bu class bir rest controllerdır, içini uygulama başladığında tara, http->function 
+// tanımlarını al
 public class ProductController {
-
-    @GetMapping("")
-    public String getAllProducts() {
-        return "All products";
+    // Kullanıcı ne zaman /api/product alanına istek atarsa -> cevap bu fonksiyondan dönen cevap olsun
+    // /api/product -> sayHi(); matchle
+    // HTTP Method -> GET,POST,PUT,DELETE,PATCH...
+    @GetMapping("") // controllerın uzantısı + getin uzantısı -> /api/product
+    public String sayHi(String name, int age) {
+        return "Hi " + name + " yaşınız: " + age;
     }
-
-    @GetMapping("/{name}/{age}")
-    public String getProductByNameAndAge(@PathVariable String name, @PathVariable int age) {
-        return "Product: " + name + ", Age: " + age;
+    // Controllerın uzantısı + get'in uzantısı -> /api/product/hello/{name}
+    @GetMapping("hello/{name}/{age}")
+    public String sayHello(@PathVariable String name, @PathVariable int age) {
+        return "Hello " + name + " yaşınız: " + age;
     }
 
     @PostMapping
@@ -31,4 +35,5 @@ public class ProductController {
 
         return product;
     }
+
 }
