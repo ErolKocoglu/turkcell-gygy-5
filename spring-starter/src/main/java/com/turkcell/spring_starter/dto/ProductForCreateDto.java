@@ -1,16 +1,9 @@
-package com.turkcell.spring_starter.model;
+package com.turkcell.spring_starter.dto;
 
-// Entity,Domain Model, Model => Veritabanı nesnesinin koddaki temsilidir.
-public class Product {
-    private int id;
+public class ProductForCreateDto {
     private String name;
     private Double price;
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
+    
     public String getName() {
         return name;
     }
