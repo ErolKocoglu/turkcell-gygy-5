@@ -80,3 +80,32 @@ ORDER BY total_orders DESC
 
 
 
+
+-- Sayfalama?
+SELECT * from products p
+LIMIT 10
+--
+Select * from products p
+LIMIT 10 OFFSET 5
+--
+
+-- 1- Sayfa boyutu? 
+-- 2- Aktif sayfa?
+-- 1. sayfa, sayfa başı 10 element
+
+-- LIMIT {sayfa_başı_element} OFFSET {(aktif_sayfa-1) * sayfa_başı_element}
+Select * from products p
+LIMIT 10 OFFSET 0
+
+Select * from products p
+LIMIT 10 OFFSET 10
+
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,9 @@
 package com.turkcell.spring_starter.model;
 
+// ORM - DB bağlantısı
+// Encryption-Hashing
+
+
 // Entity,Domain Model, Model => Veritabanı nesnesinin koddaki temsilidir.
 public class Product {
     private int id;
