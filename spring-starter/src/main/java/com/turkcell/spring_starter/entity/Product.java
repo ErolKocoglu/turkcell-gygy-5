@@ -7,6 +7,8 @@ import org.hibernate.annotations.UuidGenerator;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,6 +25,13 @@ public class Product {
 
    @Column(name="description", length = 500)
    private String description;
+
+   @ManyToOne
+   @JoinColumn(name="category_id", nullable = false)
+   private Category category;
+
+
+
 
    public UUID getId() {
     return id;
@@ -46,6 +55,14 @@ public class Product {
 
    public void setDescription(String description) {
     this.description = description;
+   }
+
+   public Category getCategory() {
+    return category;
+   }
+
+   public void setCategory(Category category) {
+    this.category = category;
    }
 
 }
