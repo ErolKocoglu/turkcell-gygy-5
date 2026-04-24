@@ -15,7 +15,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+// Bu projedeki tüm entityler için tüm CRUD işlemleri kodlanmalı.
+// GET-GET BY ID-ADD-UPDATE-DELETE
 
+// Kütüphane sisteminizi code-first oluşturun.
+
+// JPQL  
 @RestController
 @RequestMapping("/api/categories")
 public class CategoriesController {
