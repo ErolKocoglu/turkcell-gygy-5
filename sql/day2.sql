@@ -73,10 +73,28 @@ ORDER BY total_orders DESC
 
 
 -- Toplam cirosu 50k'dan büyük müşteriler
+Select c.contact_name, SUM(od.quantity * od.unit_price) as total_revenue from customers c
+JOIN orders o on c.customer_id = o.customer_id
+JOIN order_details od on o.order_id = od.order_id
+GROUP BY c.customer_id, c.contact_name
+HAVING SUM(od.quantity * od.unit_price) > 50000
+ORDER BY total_revenue DESC
+--
+
 
 -- Her kategori için en az 5 farklı ürün satan kategoriler
+Select p.category_id, COUNT(DISTINCT p.product_id) as product_count from products p
+GROUP BY p.category_id
+HAVING COUNT(DISTINCT p.product_id) >= 5
+--
 
--- Çalışan bazlı toplam satış tutarı (birim fiyat) 
+
+-- Çalışan bazlı toplam satış tutarı (birim fiyat)
+Select e.first_name, e.last_name, SUM(od.quantity * od.unit_price) as total_sales from employees e
+JOIN orders o on e.employee_id = o.employee_id 
+JOIN order_details od on o.order_id = od.order_id
+GROUP BY e.employee_id, e.first_name, e.last_name
+--
 
 
 
