@@ -2,6 +2,7 @@ package com.turkcell.spring_starter.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,22 @@ public class CategoryServiceImpl {
         List<Category> categories = categoryRepository.findAll();
 
         // TODO: Refactor
+        List<ListCategoryResponse> responseList = new ArrayList<>();
+
+        for (Category category : categories) {
+            ListCategoryResponse response = new ListCategoryResponse();
+            response.setId(category.getId());
+            response.setName(category.getName());
+            responseList.add(response);
+        }
+
+        return responseList;
+    }
+
+    public List<ListCategoryResponse> search(String query)
+    {
+        Set<Category> categories = categoryRepository.findByNameLike("%" + query + "%");
+
         List<ListCategoryResponse> responseList = new ArrayList<>();
 
         for (Category category : categories) {
