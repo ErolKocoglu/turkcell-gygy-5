@@ -14,6 +14,8 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 // Bu projedeki tüm entityler için tüm CRUD işlemleri kodlanmalı.
 // GET-GET BY ID-ADD-UPDATE-DELETE
@@ -36,8 +38,13 @@ public class CategoriesController {
        return categoryServiceImpl.create(createCategoryRequest);
     }
 
-    @GetMapping
+    @GetMapping()
     public List<ListCategoryResponse> getAll() {
         return categoryServiceImpl.getAll();
     }
+    @GetMapping("search")
+    public List<ListCategoryResponse> getMethodName(@RequestParam String query) {
+        return categoryServiceImpl.search(query);
+    }
+    
 }
