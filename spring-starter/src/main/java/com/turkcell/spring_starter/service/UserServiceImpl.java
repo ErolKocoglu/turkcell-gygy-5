@@ -19,6 +19,13 @@ public class UserServiceImpl {
     }
 
     public void registerUser(RegisterRequest registerRequest) {
+        User userWithSameEmail = userRepository.findByEmail(registerRequest.getEmail())
+                                                .orElse(null);
+        if(userWithSameEmail != null)
+        {
+            throw new RuntimeException("Bu e-posta zaten kayıtlı.");
+        }
+
 
         User user = new User();
         user.setEmail(registerRequest.getEmail());

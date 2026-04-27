@@ -9,6 +9,8 @@ import com.turkcell.spring_starter.dto.LoginRequest;
 import com.turkcell.spring_starter.dto.RegisterRequest;
 import com.turkcell.spring_starter.service.UserServiceImpl;
 
+import jakarta.validation.Valid;
+
 @RequestMapping("/api/users")
 @RestController
 public class UsersController {
@@ -19,7 +21,7 @@ public class UsersController {
     }
 
     @PostMapping
-    public void register(@RequestBody RegisterRequest registerRequest)
+    public void register(@RequestBody @Valid RegisterRequest registerRequest)
     {
         this.userService.registerUser(registerRequest);
     }
