@@ -22,11 +22,10 @@ public class UserServiceImpl {
         User user = new User();
         user.setEmail(registerRequest.getEmail());
 
-        String encodedPassword = this.passwordEncoder.encode(registerRequest.getPassword())
+        String encodedPassword = this.passwordEncoder.encode(registerRequest.getPassword());
         user.setPassword(encodedPassword); // PLAIN - Düz kaydetme!
 
 
         userRepository.save(user);
-        
     }
 }
