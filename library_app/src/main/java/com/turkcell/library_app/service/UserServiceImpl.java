@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.turkcell.library_app.dto.CreateUserRequest;
 import com.turkcell.library_app.entity.AppUser;
+import com.turkcell.library_app.exception.NotFoundException;
 import com.turkcell.library_app.repository.AppUserRepository;
 
 @Service
@@ -20,7 +21,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public AppUser getUser(UUID id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new NotFoundException("User not found"));
     }
 
     @Override

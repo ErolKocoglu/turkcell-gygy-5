@@ -10,6 +10,9 @@ import com.turkcell.library_app.entity.BookCopy;
 import com.turkcell.library_app.entity.Borrow;
 import com.turkcell.library_app.entity.BorrowStatus;
 import com.turkcell.library_app.entity.Officer;
+import com.turkcell.library_app.exception.BookAlreadyBorrowedException;
+import com.turkcell.library_app.exception.BookAlreadyReturnedException;
+import com.turkcell.library_app.exception.NotFoundException;
 import com.turkcell.library_app.repository.AppUserRepository;
 import com.turkcell.library_app.repository.BookCopyRepository;
 import com.turkcell.library_app.repository.BorrowRepository;
@@ -37,20 +40,20 @@ public class BorrowServiceImpl implements BorrowService {
     @Override
     public Borrow borrowBook(UUID userId, UUID bookCopyId, UUID officerId) {
         BookCopy bookCopy = bookCopyRepository.findByIdForUpdate(bookCopyId)
-                .orElseThrow(() -> new RuntimeException("Book copy not found"));
+                .orElseThrow(() -> new NotFoundException("Book copy not found"));
 
         boolean isBorrowed = borrowRepository
                 .existsByBookCopy_IdAndStatus(bookCopyId, BorrowStatus.BORROWED);
 
         if (isBorrowed) {
-            throw new RuntimeException("Book already borrowed");
+            throw new BookAlreadyBorrowedException("Book already borrowed");
         }
 
         AppUser user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new NotFoundException("User not found"));
 
         Officer officer = officerRepository.findById(officerId)
-                .orElseThrow(() -> new RuntimeException("Officer not found"));
+                .orElseThrow(() -> new NotFoundException("Officer not found"));
 
         Borrow borrow = new Borrow();
         borrow.setUser(user);
@@ -68,14 +71,14 @@ public class BorrowServiceImpl implements BorrowService {
     @Override
     public Borrow returnBook(UUID borrowId, UUID officerId) {
         Borrow borrow = borrowRepository.findById(borrowId)
-                .orElseThrow(() -> new RuntimeException("Borrow not found"));
+                .orElseThrow(() -> new NotFoundException("Borrow not found"));
 
         if (borrow.getStatus() != BorrowStatus.BORROWED) {
-            throw new RuntimeException("Book already returned");
+            throw new BookAlreadyReturnedException("Book already returned");
         }
 
         Officer officer = officerRepository.findById(officerId)
-                .orElseThrow(() -> new RuntimeException("Officer not found"));
+                .orElseThrow(() -> new NotFoundException("Officer not found"));
 
         borrow.setReturnDate(LocalDateTime.now());
         borrow.setReceivedBy(officer);
