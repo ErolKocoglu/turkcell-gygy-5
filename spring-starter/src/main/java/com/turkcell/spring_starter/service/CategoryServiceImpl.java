@@ -18,10 +18,13 @@ import jakarta.persistence.EntityManager;
 public class CategoryServiceImpl {
     private final CategoryRepository categoryRepository;
     private final EntityManager entityManager;
+    private final ProductServiceImpl productServiceImpl;
 
-    public CategoryServiceImpl(CategoryRepository categoryRepository, EntityManager entityManager) {
+    public CategoryServiceImpl(CategoryRepository categoryRepository, EntityManager entityManager,
+            ProductServiceImpl productServiceImpl) {
         this.categoryRepository = categoryRepository;
         this.entityManager = entityManager;
+        this.productServiceImpl = productServiceImpl;
     }
 
     public Category getById(UUID id)
