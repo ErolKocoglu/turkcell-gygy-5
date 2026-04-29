@@ -2,12 +2,14 @@ package com.turkcell.spring_cqrs.core.mediator;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.ResolvableType;
+import org.springframework.stereotype.Component;
 
 import com.turkcell.spring_cqrs.core.mediator.cqrs.Command;
 import com.turkcell.spring_cqrs.core.mediator.cqrs.CommandHandler;
 import com.turkcell.spring_cqrs.core.mediator.cqrs.Query;
 import com.turkcell.spring_cqrs.core.mediator.cqrs.QueryHandler;
 
+@Component
 public class SpringMediator implements Mediator
 {
     private final ApplicationContext context;
