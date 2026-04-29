@@ -33,14 +33,30 @@ public class SpringMediator implements Mediator
 
     // Hangi command/query -> hangi handler?
     private Object resolveHandler(Class<?> requestType, Class<?> handlerInterface) {
-        ResolvableType handlerType = ResolvableType.forClassWithGenerics(handlerInterface, requestType);
+        // TODO: Refactor & Add Caching
 
-        String[] beans = context.getBeanNamesForType(handlerType);
+        // Tüm handlerları gez, komutla/query ile uyuşanı dön.
+        String[] beanNames = context.getBeanNamesForType(handlerInterface);
 
-        if(beans.length == 0)
-            throw new IllegalStateException("Handler bulunamadı" + requestType.getSimpleName());
+        for(String beanName: beanNames)
+        {
+            Class<?> beanClass = context.getType(beanName);
+            if(beanClass == null) continue;
 
-        return context.getBean(beans[0]);
+            ResolvableType[] interfaces = ResolvableType.forClass(beanClass).getInterfaces();
+
+            for(ResolvableType iface: interfaces)
+            {
+                if(iface.getRawClass() != null && handlerInterface.isAssignableFrom(iface.getRawClass()))
+                {
+                    Class<?> firstGeneric = iface.getGeneric(0).resolve();
+
+                    if(firstGeneric != null && firstGeneric.equals(requestType))
+                        return context.getBean(beanName);
+                }
+            }
+        }
+        throw new IllegalStateException("Handler bulunamadı." + requestType.getSimpleName());
     }
 
 }
