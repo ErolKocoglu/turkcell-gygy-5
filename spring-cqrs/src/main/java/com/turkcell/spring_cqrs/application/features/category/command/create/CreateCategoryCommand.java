@@ -6,4 +6,4 @@ import java.util.UUID;
 
 import com.turkcell.spring_cqrs.core.mediator.cqrs.Command;
 
-public record CreateCategoryCommand(String name, String description) implements Command<UUID> {}
+public record CreateCategoryCommand(String name) implements Command<UUID> {}
