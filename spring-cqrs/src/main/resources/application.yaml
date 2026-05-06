@@ -10,3 +10,8 @@ spring:
         hibernate:
             ddl-auto: update
         show-sql: true
+security:
+  jwt:
+    secret: a
+    expirationInSeconds: 360000
+    issuer: spring-cqrs
