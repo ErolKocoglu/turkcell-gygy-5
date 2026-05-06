@@ -19,8 +19,6 @@ public class GetAllCategoriesQueryHandler implements
         this.categoryRepository = categoryRepository;
     }
 
-
-
     @Override
     public Page<GetAllCategoriesResponse> handle(GetAllCategoriesQuery query) {
         // Hibernate sana sağladığı bir özellik.
@@ -28,6 +26,7 @@ public class GetAllCategoriesQueryHandler implements
 
         Page<Category> categories = categoryRepository.findAll(pageable);
 
+        // mapper'a ekle.
         return categories.map(category -> new GetAllCategoriesResponse(category.getId(), category.getName()));
     }
 
