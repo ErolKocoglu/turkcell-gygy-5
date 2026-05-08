@@ -51,7 +51,10 @@ public class SpringMediator implements Mediator
             Class<?> beanClass = context.getType(beanName);
             if(beanClass == null) continue;
 
-            ResolvableType[] interfaces = ResolvableType.forClass(beanClass).getInterfaces();
+            // Spring CGLIB proxylerini çözmek için asıl sınıfı alıyoruz
+            Class<?> userClass = org.springframework.util.ClassUtils.getUserClass(beanClass);
+
+            ResolvableType[] interfaces = ResolvableType.forClass(userClass).getInterfaces();
 
             for(ResolvableType iface: interfaces)
             {

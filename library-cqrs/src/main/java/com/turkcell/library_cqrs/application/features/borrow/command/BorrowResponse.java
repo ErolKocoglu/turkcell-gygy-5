@@ -24,5 +24,27 @@ public class BorrowResponse {
         this.dueDate = dueDate;
     }
 
-    // getter
+    public UUID getBorrowId() {
+        return borrowId;
+    }
+
+    public UUID getUserId() {
+        return userId;
+    }
+
+    public UUID getBookCopyId() {
+        return bookCopyId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public LocalDateTime getBorrowDate() {
+        return borrowDate;
+    }
+
+    public LocalDateTime getDueDate() {
+        return dueDate;
+    }
 }

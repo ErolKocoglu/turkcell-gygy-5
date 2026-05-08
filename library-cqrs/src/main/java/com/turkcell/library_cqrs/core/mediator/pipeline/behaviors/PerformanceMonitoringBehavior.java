@@ -23,7 +23,7 @@ public class PerformanceMonitoringBehavior implements PipelineBehavior {
 
             if (elapsedTime > PERFORMANCE_THRESHOLD_MS) {
                 String requestName = request.getClass().getSimpleName();
-                System.out.println("⚠️ PERFORMANCE WARNING: Request '" + requestName + "' took " +
+                System.out.println("PERFORMANCE WARNING: Request '" + requestName + "' took " +
                         elapsedTime + "ms (threshold: " + PERFORMANCE_THRESHOLD_MS + "ms)");
             }
         }

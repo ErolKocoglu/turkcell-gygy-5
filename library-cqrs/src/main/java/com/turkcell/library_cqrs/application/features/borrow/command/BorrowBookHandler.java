@@ -35,6 +35,13 @@ public class BorrowBookHandler implements CommandHandler<BorrowBookCommand, Borr
 
     @Override
     public BorrowResponse handle(BorrowBookCommand cmd) {
+        
+        try {
+            Thread.sleep(3500);//yavaş request deneme
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException("Interrupted while sleeping");
+        }
 
         BookCopy bookCopy = bookCopyRepository.findByIdForUpdate(cmd.getBookCopyId())
                 .orElseThrow(() -> new RuntimeException("Book copy not found"));

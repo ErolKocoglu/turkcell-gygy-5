@@ -1,0 +1,241 @@
+{
+    "info": {
+        "name": "Library CQRS API",
+        "description": "Turkcell GYGY Library CQRS Projesi Test İstekleri",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "1. AppUser Ekle",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"Ahmet Yılmaz\",\n    \"job\": \"Öğrenci\",\n    \"address\": \"Kadıköy, İstanbul\",\n    \"phone\": \"5551234567\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/appusers",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "appusers"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "2. Officer Ekle",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"Ayşe Memur\",\n    \"job\": \"Kütüphaneci\",\n    \"address\": \"Üsküdar, İstanbul\",\n    \"phone\": \"5559876543\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/officers",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "officers"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "3. Author Ekle",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"Sabahattin Ali\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/authors",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "authors"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "4. Publisher Ekle",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"Yapı Kredi Yayınları\",\n    \"address\": \"Beyoğlu, İstanbul\",\n    \"phone\": \"2125555555\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/publishers",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "publishers"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "5. Category Ekle",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"Roman\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/categories",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "categories"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "6. Book Ekle",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"Kürk Mantolu Madonna\",\n    \"categoryId\": \"123e4567-e89b-12d3-a456-426614174000\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/books",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "books"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "7. BookCopy Ekle",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"bookId\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"publisherId\": \"123e4567-e89b-12d3-a456-426614174001\",\n    \"yearPublished\": \"2020-01-01T00:00:00\",\n    \"pageCount\": 160\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/bookcopys",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "bookcopys"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "8. Borrow (Ödünç Al)",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "type": "text"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"userId\": \"123e4567-e89b-12d3-a456-426614174000\",\n  \"bookCopyId\": \"123e4567-e89b-12d3-a456-426614174001\",\n  \"officerId\": \"123e4567-e89b-12d3-a456-426614174002\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/borrows",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "borrows"
+                    ]
+                }
+            }
+        }
+    ]
+}

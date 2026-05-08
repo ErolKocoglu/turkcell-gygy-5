@@ -22,11 +22,11 @@ public class Officer {
     private String address;
     private String phone;
 
-    @OneToMany(mappedBy = "user")
-    private List<Borrow> borrows;
+    @OneToMany(mappedBy = "issuedBy")
+    private List<Borrow> issuedBorrows;
 
-    @OneToMany(mappedBy = "user")
-    private List<Fine> fines;
+    @OneToMany(mappedBy = "receivedBy")
+    private List<Borrow> receivedBorrows;
 
     public UUID getId() {
         return id;
@@ -68,20 +68,20 @@ public class Officer {
         this.phone = phone;
     }
 
-    public List<Borrow> getBorrows() {
-        return borrows;
+    public List<Borrow> getIssuedBorrows() {
+        return issuedBorrows;
     }
 
-    public void setBorrows(List<Borrow> borrows) {
-        this.borrows = borrows;
+    public void setIssuedBorrows(List<Borrow> issuedBorrows) {
+        this.issuedBorrows = issuedBorrows;
     }
 
-    public List<Fine> getFines() {
-        return fines;
+    public List<Borrow> getReceivedBorrows() {
+        return receivedBorrows;
     }
 
-    public void setFines(List<Fine> fines) {
-        this.fines = fines;
+    public void setReceivedBorrows(List<Borrow> receivedBorrows) {
+        this.receivedBorrows = receivedBorrows;
     }
 
     
