@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.turkcell.spring_cqrs.core.exception.type.AuthenticatedException;
 import com.turkcell.spring_cqrs.core.security.context.UserContext;
 import com.turkcell.spring_cqrs.core.security.jwt.JwtService;
 
@@ -39,21 +40,22 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 String token = jwtHeader.substring(7);
 
                 // JWT'i doğrula, kullanıcıyı bul ve sisteme tanıt..
-                try{
-                    if(jwtService.isTokenValid(token))
-                    {
-                        // Kullanıcıyı sisteme tanıt..
-                        String userId = jwtService.extractUserId(token);
-                        String email = jwtService.extractEmail(token);
-                        List<String> roles = Collections.EMPTY_LIST; //TODO: Implement
-                        userContext.setUser(userId, email, roles);
-                    }
-                }catch(Exception e){
-                    // SecurityContextHolder.Clear();
+                try {
+                    String userId = jwtService.extractUserId(token);
+                    String email = jwtService.extractEmail(token);
+                    List<String> roles = jwtService.extractRoles(token);
+                    userContext.setUser(userId, email, roles);
+                } catch (Exception e) {
+                    userContext.clear();
                 }
+
             }
 
-            filterChain.doFilter(request, response); // chaini ilerlet..
+            try {
+                filterChain.doFilter(request, response);
+            } finally {
+                userContext.clear();
+            }
     }
 
 }

@@ -10,29 +10,36 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope(value="request", proxyMode=ScopedProxyMode.TARGET_CLASS)
 public class UserContext {
-    private String userId;
-    private String email;
-    private List<String> roles = Collections.EMPTY_LIST;
-    private boolean isAuthenticated = false;
-
+    private final ThreadLocal<String> userId = new ThreadLocal<>();
+    private final ThreadLocal<String> email = new ThreadLocal<>();
+    private final ThreadLocal<List<String>> roles = ThreadLocal.withInitial(Collections::emptyList);
+    private final ThreadLocal<Boolean> isAuthenticated = ThreadLocal.withInitial(() -> false);
+    
     public void setUser(String userId, String email, List<String> roles) {
-        this.isAuthenticated = true;
-        this.userId = userId;
-        this.roles = roles;
-        this.email = email;
+        this.userId.set(userId);
+        this.email.set(email);
+        this.roles.set(roles == null ? Collections.emptyList() : roles);
+        this.isAuthenticated.set(true);
+    }
+
+    public void clear() {
+        this.userId.remove();
+        this.email.remove();
+        this.roles.remove();
+        this.isAuthenticated.remove();
     }
 
     public String getUserId() {
-        return userId;
+        return userId.get();
     }
     public String getEmail() {
-        return email;
+        return email.get();
     }
     public List<String> getRoles() {
-        return roles;
+        return roles.get();
     }
     public boolean isAuthenticated() {
-        return isAuthenticated;
+        return isAuthenticated.get();
     }
     
     

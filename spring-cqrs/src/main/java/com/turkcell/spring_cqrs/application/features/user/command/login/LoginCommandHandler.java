@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.turkcell.spring_cqrs.core.mediator.cqrs.CommandHandler;
 import com.turkcell.spring_cqrs.core.security.jwt.JwtService;
+import java.util.List;
 import com.turkcell.spring_cqrs.domain.User;
 import com.turkcell.spring_cqrs.persistence.repository.UserRepository;
 
@@ -31,7 +32,7 @@ public class LoginCommandHandler implements CommandHandler<LoginCommand, LoginRe
             throw new RuntimeException("Invalid credentials");
         }
 
-        String jwt = jwtService.generate(user.getId(), user.getEmail());
+        String jwt = jwtService.generate(user.getId(), user.getEmail(), List.of("USER"));
         return new LoginResponse(jwt);
     }
 }

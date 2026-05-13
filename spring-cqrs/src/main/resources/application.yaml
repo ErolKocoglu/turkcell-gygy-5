@@ -13,5 +13,5 @@ spring:
 security:
   jwt:
     secret: a+mn3JdYxP2wsBITgnpIOA9zEag8EUPE022WDSwDcpPzvgdWGXb6hbskhyKK6wY1
-    expirationInSeconds: 360000
+    expirationInSeconds: 30
     issuer: spring-cqrs

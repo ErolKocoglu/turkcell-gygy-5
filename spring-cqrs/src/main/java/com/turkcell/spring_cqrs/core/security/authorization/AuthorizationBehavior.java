@@ -6,6 +6,9 @@ import org.springframework.stereotype.Component;
 import com.turkcell.spring_cqrs.core.mediator.pipeline.PipelineBehavior;
 import com.turkcell.spring_cqrs.core.mediator.pipeline.RequestHandlerDelegate;
 import com.turkcell.spring_cqrs.core.security.context.UserContext;
+import com.turkcell.spring_cqrs.core.exception.type.AuthenticatedException;
+import com.turkcell.spring_cqrs.core.exception.type.AuthorizationException;
+import java.util.List;
 
 @Component
 @Order(10)
@@ -28,11 +31,19 @@ public class AuthorizationBehavior implements PipelineBehavior {
     @Override
     public <R> R handle(Object request, RequestHandlerDelegate<R> next) {
         if(!userContext.isAuthenticated())
-            throw new RuntimeException("Giriş yapmalısın..");
-        // Özel bir exception türü belirle.
-        // Handlerda bu exceptionı eğer giriş yapılmamışsa 401, (UnauthenticatedException)
-        // yapılmış ancak rol yetersiz ise 403 döndürecek şekilde (UnauthorizedException)
-        // düzenle..
+            throw new AuthenticatedException("Giriş yapmalısın..");// token olmayınca burası çalışıyor
+        
+        AuthorizableRequest authRequest = (AuthorizableRequest) request;
+        List<String> requiredRoles = authRequest.getRequiredRoles();
+        
+        if (requiredRoles != null && !requiredRoles.isEmpty()) {
+            boolean hasRole = userContext.getRoles().stream()
+                .anyMatch(requiredRoles::contains);
+            
+            if (!hasRole) {
+                throw new AuthorizationException("Gerekli yetkiye ship değilsiniz..");
+            }
+        }
         
         return next.invoke(); // zincirdeki sonraki halkayı çağır..
     }
